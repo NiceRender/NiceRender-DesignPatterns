@@ -6,26 +6,29 @@ class AppSettings
     public:
         static AppSettings* getInstance()
         {
-            if (!_instance) _instance = new AppSettings();
-            return _instance;
+            if (!m_instance) m_instance = new AppSettings();
+            return m_instance;
         }
-        
-        void setLang(std::string lang) { _lang = lang; }
-        std::string getLang() { return _lang; }
+
+        void setLang(std::string lang) { m_lang = lang; }
+        std::string getLang() { return m_lang; }
 
     protected:
         AppSettings() {}
 
     private:
-        static AppSettings* _instance;
-        std::string _lang = "en";
+        static AppSettings* m_instance;
+        std::string m_lang = "en";
 };
-  
-AppSettings* AppSettings::_instance = nullptr;
+
+AppSettings* AppSettings::m_instance = nullptr;
 
 int main()
 {
     AppSettings::getInstance()->setLang("en");
+
+    // ...
+
     std::string lang = AppSettings::getInstance()->getLang();
     if (lang == "en") { std::cout << "Hello!\n"; }
     else if (lang == "ru") { std::cout << "Privet!\n"; }

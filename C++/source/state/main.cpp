@@ -3,13 +3,11 @@
 int main()
 {
     MusicPlayer player;
-    
-    // Correct
-    player.play();
-    player.pause();
-    player.stop();
-    
-    // Error
-    player.stop();
-    player.pause();
+
+    player.play();  // Correct
+    player.pause(); // Correct
+    player.stop();  // Correct
+
+    player.stop();  // Error
+    player.pause(); // Error
 }

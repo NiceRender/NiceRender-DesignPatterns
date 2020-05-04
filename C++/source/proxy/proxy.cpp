@@ -6,8 +6,8 @@ class IPhone
 {
     public:
         virtual ~IPhone();
-        virtual void unlock() = 0;
         virtual void lock() = 0;
+        virtual void unlock() = 0;
         virtual void call() = 0;
 
     protected:
@@ -19,21 +19,21 @@ IPhone::~IPhone() {}
 class Phone : public IPhone
 {
     public:
-        void unlock();
         void lock();
+        void unlock();
         void call();
 };
-
-void Phone::unlock()
-{
-    m_isLocked = false;
-    std::cout << "Phone is unlocked.\n";
-}
 
 void Phone::lock()
 {
     m_isLocked = true;
     std::cout << "Phone is locked.\n";
+}
+
+void Phone::unlock()
+{
+    m_isLocked = false;
+    std::cout << "Phone is unlocked.\n";
 }
 
 void Phone::call()
@@ -49,14 +49,15 @@ class PhoneWithPassword : public IPhone
         void unlock();
         void lock();
         void call();
+
+    private:
+        Phone* m_phone;
+
         bool checkPassword(const std::string& password)
         {
             if (password == "qwerty") return true;
             else return false;
         }
-    
-    private:
-        Phone* m_phone;
 };
 
 void PhoneWithPassword::lock()
