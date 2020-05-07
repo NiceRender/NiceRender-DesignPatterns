@@ -20,10 +20,9 @@ class BubbleSort : public SortingAlgorithm
 
 void BubbleSort::sort(std::vector<double>& arr)
 {
-    ulong n = arr.size();
-    for (ulong i = n - 1; i > 0; i--)
+    for (int i = 0; i < arr.size(); i++)
     {
-        for (ulong j = 0; j < i; j++)
+        for (int j = 0; j < arr.size() - 1 - i; j++)
             if (arr[j] > arr[j + 1]) std::swap(arr[j], arr[j + 1]);
     }
 }
@@ -36,16 +35,17 @@ class ShakerSort : public SortingAlgorithm
 
 void ShakerSort::sort(std::vector<double>& arr)
 {
-    ulong n = arr.size();
-    for (ulong leftIdx = 0, rightIdx = n - 1; leftIdx < rightIdx;)
+    int left = 0, right = arr.size() - 1;
+	do
     {
-        for (ulong idx = leftIdx; idx < rightIdx; idx++)
-            if (arr[idx + 1] < arr[idx]) std::swap(arr[idx], arr[idx + 1]);
-        rightIdx--;
-        for (ulong idx = rightIdx; idx > leftIdx; idx--)
-            if (arr[idx - 1] >  arr[idx]) std::swap(arr[idx - 1], arr[idx]);
-        leftIdx++;
-    }
+		for (int i = left; i < right; i++)
+			if (arr[i] > arr[i + 1]) std::swap(arr[i], arr[i + 1]);
+		right--;
+		for (int i = right; i > left; i--)
+			if (arr[i] < arr[i - 1]) std::swap(arr[i], arr[i - 1]);
+		left++;
+	}
+    while (left < right);
 }
 
 class Sorter
